@@ -1,0 +1,102 @@
+<h1>CONTACT</h1>
+<p>
+    Here is our contacts if you have questions in the topics
+    that we present or if you have comments of our website:
+<br>
+
+    FEEL FREE TO ASK!
+
+    <br>
+    If you want to share with us any file that can be useful to
+    all the community, send it here:
+</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<style>
+    html{
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+    }
+    *,
+    *:before,
+    *:after{
+        box-sizing: inherit;
+    }
+    main{
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    progress{
+        margin-top: 1rem;
+    }
+</style>
+<main><input type="file" id="files" name="files" multiple>
+ 
+</main>
+<body>
+<script>
+    const d =document,
+    $main =d.querySelector("main"),
+    $files =d.getElementById("files");
+
+    const uploader = (file)=>{
+//console.log(file);
+const xhr = new XMLHttpRequest(),
+formData =new FormData();
+
+formData.append("file",file);
+
+xhr.addEventListener("readystatechange", e=>{
+    if(xhr.readyState !==4) return;
+
+    if(xhr.status>=200&&xhr.status<300){
+        let json = JSON.parse(xhr.responseText);
+console.log(json);
+    } else {
+        let message = xhr.statusText||"Ocurrió un error";
+        console.error(`Error${xhr.status}:${message}`);
+    }
+});
+xhr.open("POST","/js/Ejercicios AJAX-Ejercicios/assets-ejercicios/ajax/uploader.php");
+xhr.setRequestHeader("enc-type","multipart/form-data");
+xhr.send(formData)
+    }
+    /*const progressUpload=(file)=>{
+const $progress = d.createElement("progress")
+$span =d.createElement("span")
+
+$progress.value=0;
+$progress.max=100;
+
+$main.insertAdjacentElement("beforeend",$progress)
+$main.insertAdjacentElement("beforeend",$span)
+
+const fileReader = new FileReader();
+fileReader.read.readAsDataURL(file);
+
+fileReader.addEventListener("progress",e=>{
+    let progress = parseInt((e.loaded*100)/e.total);
+    $progress.value =progress;
+    $span.innerHTML=`<b>${file.name}-${progress}%</b>`
+});
+
+fileReader.addEventListener("loadend",e=>{})
+    }*/
+    d.addEventListener("change",(e)=>{
+        if(e.target===$files){
+            //console.log(e.target.files);
+
+            const files =Array.from(e.target.files);
+            files.forEach(el => progressUpload(el));
+        }
+    });
+</script>
+</body>

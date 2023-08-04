@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Incluir HTML</title>
+    <script src="https://kit.fontawesome.com/13f3fedf78.js" crossorigin="anonymous"></script>
+   <style>
+html{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+
+}
+*,
+*:before,
+*:after{
+    box-sizing: inherit;
+}
+
+body{
+    margin:0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+main{
+    flex-grow: 1;
+}
+.container{
+    margin-left:auto;
+    margin-right: auto;
+    max-width: 992px;
+}
+
+.header{
+    padding:.7rem;
+    background-color: rgb(52, 76, 100);
+}
+.header-content{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    text-transform: uppercase;
+    height: 100%;
+
+}
+
+.logo img {
+    width:9rem;
+    height: auto;
+}
+.menu{
+    display:flex;
+    justify-content: space-between;
+    font-size: 115%;
+    list-style: none;
+}
+.menu >li >a {
+    display: block;
+    padding:15px 20px;
+    text-decoration: none;
+}
+.menu a{
+    color: rgb(208, 250, 244);
+    padding:0 1vw;
+    transition:all .3s ease-in-out;
+}
+.menu a:hover{
+    opacity:.75;
+    transform: scale(1.1);
+    background-color: rgb(52, 76, 100);
+    box-shadow: 0px 0px 10px 0px black;
+}
+.vertical-menu >li >a{
+display: block;
+padding: 15px;
+color: rgb(52, 76, 100);
+text-decoration: none;
+
+}
+.vertical-menu{
+    position:absolute;
+    top: 100px;
+    padding: 14px 0px;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 10;
+    display:flex;
+    flex-direction:column;
+    background: #fff;
+    box-shadow: 0px 0px 10px 0px black;
+    list-style: none;
+    width: 200px;
+    transition:all 300ms ease;
+}
+.menu li:hover .vertical-menu{
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    top: 90px;
+    color:#fff;
+    background-color: #fff;
+    background:#fff;
+}
+.vertical-menu li:hover ul{
+    visibility: visible;
+    opacity: 1;
+    top: 70px;
+    background-color: rgb(181, 191, 200);
+    color:#fff;
+}
+.vertical-menu li a{
+    display:block;
+    padding:15px 15px 15px 20px;
+    text-decoration: none;
+}
+nav > ul >li:first-child > a {
+    background-image: url(../ajax/home.png);
+    background-size: 45px;
+    background-repeat: no-repeat;
+    background-position: center ;
+    padding: 25px 35px;
+}
+nav > ul >li:first-child:hover > a {
+    background-image: url(../ajax/home.png);
+    background-size: 45px;
+    background-repeat: no-repeat;
+    background-position: center center ;
+    padding: 25px 35px;
+}
+#selected {
+    transform: scale(1.1);
+    background-color: rgb(49, 90, 131);
+    box-shadow: 0px 0px 10px 0px black;
+    border-radius: 6px;
+}
+nav ul li ul:before{
+    content:'';
+    width: 0;
+    height: 0;
+    border-left:12px solid transparent;
+    border-right:12px solid transparent;
+    border-bottom: 12px solid white;
+    position: absolute;
+    top: -12px;
+    left:20px;
+}
+nav ul li ul li a:hover{
+    color:#fff;
+}
+/*Elementos Responsivos*/
+.icon__menu{
+    font-size: 30px;
+    color: rgb(208, 250, 244);
+    cursor: pointer;
+    width:30px;
+    height: 100%;
+    align-items: center;
+    display: none;
+}
+#check__menu{
+    display:none;
+
+}
+#label__check{
+    width:30px;
+    height: 100%;
+    display: none;
+}
+
+@media screen and (max-width: 720px){
+    .header{
+        padding: 10px;
+    }
+    nav>ul{
+        flex-direction: column;
+        background-color: rgb(52, 76, 100);
+        position:fixed;
+        left:0;
+        top:110px;
+        width:100%;
+        height: 0px;
+        transition:all 300ms ease;
+        z-index:100;
+        opacity:0;
+        visibility: hidden;
+    }
+    nav >ul >li >a:hover{
+        transform:scale(1);
+    }
+    nav ul li ul{
+        left:90px;
+        margin-top:30px;
+    }
+    nav >ul >li:hover ul{
+        top:-100px;
+    }
+    nav ul li ul li a:hover{
+        top:100px;
+}
+.vertical-menu li:hover ul{
+    top: 700px;
+    
+}
+    nav > ul >li:first-child a{
+        background-position: 20px;
+    }
+    #selected{
+        transform:scale(1);
+    }
+    #label__check{
+    display:block;
+}
+.icon__menu{
+    display:flex;
+}
+#check__menu:checked ~nav >ul {
+    height: 300px;
+    visibility: visible;
+    opacity:1;
+}
+}
+
+    
+
+   </style>
+   <script src="/js/Ejercicios AJAX-Ejercicios/assets-ejercicios/ajax/include-html.js"></script>
+  </head>
+    <body>
+     <div data-include="/js/Ejercicios AJAX-Ejercicios/assets-ejercicios/ajax/header.html"></div>
+     <main class="container"></main>
+     <div data-include="/js/Ejercicios AJAX-Ejercicios/assets-ejercicios/ajax/footer.html"></div>
+    <script>
+        const d = document,
+        $main =d.querySelector("main");
+
+        const getHTML =(options)=>{
+            let {url,success,error} =  options;
+            const xhr = new XMLHttpRequest();
+
+            xhr.addEventListener("readystatechange", (e)=>{
+    
+        if(xhr.readyState!==4) return;
+        if(xhr.status>=200&&xhr.status<300){
+            let html  = xhr.responseText;
+            success(html);
+        } else{
+            let message = xhr.statusText||"Ocurrió un error";
+            error(`Error ${xhr.status}:${message}`);
+        }
+            });
+
+            xhr.open("GET",url);
+            xhr.setRequestHeader("Content-Type","text/html;charset=utf-8");
+            xhr.send();
+
+        }
+
+        d,addEventListener("DOMContentLoaded",(e)=>{
+            getHTML({
+                url:"/js/Ejercicios AJAX-Ejercicios/assets-ejercicios/ajax/HOME.html",
+                success:(html)=>$main.innerHTML=html,
+                error:(err)=>$main.innerHTML=`<h1>${err}</h1>`
+            });
+        });
+
+        d.addEventListener("click",e =>{
+            if(e.target.matches(".menu a")){
+                e.preventDefault();
+                getHTML({
+                    url:e.target.href,
+                success:(html)=>$main.innerHTML=html,
+                error:(err)=>$main.innerHTML=`<h1>${err}</h1>`
+                });
+            }
+        });
+    </script>
+</body>
+</html>
